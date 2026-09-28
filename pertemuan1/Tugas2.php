@@ -1,5 +1,5 @@
 <?php
-// Tugas1_identitas.php - Modifikasi Identitas (OOP PHP) dari identitas.php
+// Tugas2.php - Modifikasi Identitas (OOP PHP) dari identitas.php
 // Modifikasi yang diterapkan:
 // 1. Inheritance (Pewarisan): Class MahasiswaBeasiswa turunan dari Mahasiswa
 // 2. Method Baru & Overriding: Method predikat() dan method overriding ringkasan()
