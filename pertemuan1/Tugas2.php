@@ -84,17 +84,18 @@ class MahasiswaBeasiswa extends Mahasiswa
 
 // Modifikasi 3: Penanganan Error (Try-Catch Exception Handling)
 try {
-    echo "--- Data Mahasiswa Reguler ---\n";
+    echo "<strong>--- Data Mahasiswa Reguler ---</strong><br>";
     $mhs1 = new Mahasiswa('4524210091', 'Riziq Wijaya', 3.85);
-    echo $mhs1->ringkasan() . "\n\n";
+    echo htmlspecialchars($mhs1->ringkasan()) . "<br><br>";
 
-    echo "--- Data Mahasiswa Beasiswa ---\n";
+    echo "<strong>--- Data Mahasiswa Beasiswa ---</strong><br>";
     $mhs2 = new MahasiswaBeasiswa('4524210092', 'Andi Pratama', 3.90, 'Beasiswa Unggulan');
-    echo $mhs2->ringkasan() . "\n\n";
+    echo htmlspecialchars($mhs2->ringkasan()) . "<br><br>";
 
     // Contoh Uji Coba Error (IPK Tidak Valid)
-    echo "--- Pengujian Validasi IPK Salah ---\n";
+    echo "<strong>--- Pengujian Validasi IPK Salah ---</strong><br>";
     $mhsError = new Mahasiswa('4524210093', 'Budi', 4.5); // Akan memicu Exception
 } catch (InvalidArgumentException $e) {
-    echo 'Terjadi Error: ' . $e->getMessage() . "\n";
+    echo 'Terjadi Error: ' . htmlspecialchars($e->getMessage()) . "<br>";
 }
+
