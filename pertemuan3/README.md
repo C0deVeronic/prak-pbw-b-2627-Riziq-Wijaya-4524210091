@@ -22,11 +22,21 @@ Modifikasi 2 (Query Verifikasi & Rekapitulasi Database): Menambahkan query SHOW 
 <br>
 <br>
 
+### 5 Bagian Kode Paling Penting (Pertemuan 3):
+1. **`mysqli_connect($host, $user, $password)`**: Menginisialisasi koneksi antara PHP dan server database MySQL di host lokal (`127.0.0.1`). <br>
+2. **`CREATE DATABASE IF NOT EXISTS akademik`**: Menjalankan query pembuatan basis data secara otomatis tanpa menimbulkan error jika database sudah ada. <br>
+3. **`mysqli_select_db($koneksi, 'akademik')` & `mysqli_set_charset()`**: Menentukan database target (`akademik`) serta mengatur encoding karakter `utf8mb4`. <br>
+4. **`CREATE TABLE IF NOT EXISTS` & Constraint Foreign Key**: Mendefinisikan DDL skema relasional tabel (`mahasiswa`, `dosen`, `mata_kuliah`) beserta aturan relasi `FOREIGN KEY`. <br>
+5. **Perulangan `foreach` & `SHOW TABLES FROM akademik`**: Mengeksekusi array DDL pembentukan tabel secara berurutan dan memverifikasi struktur tabel yang berhasil terbuat. <br>
+
+<br>
+<br>
+
 Error yang pernah muncul: <br>
-mysqli_sql_exception: Unknown database 'akademik'
-// atau
+mysqli_sql_exception: Unknown database 'akademik' <br>
+// atau <br>
 mysqli_sql_exception: No database selected <br>
-Langkah Perbaikan: Pastikan alur di script selalu:
-CREATE DATABASE IF NOT EXISTS akademik;
-mysqli_select_db($koneksi, 'akademik'); (Pilih DB)
+Langkah Perbaikan: Pastikan alur di script selalu: <br>
+CREATE DATABASE IF NOT EXISTS akademik; <br>
+mysqli_select_db($koneksi, 'akademik'); (Pilih DB) <br>
 Baru jalankan perintah CREATE TABLE.

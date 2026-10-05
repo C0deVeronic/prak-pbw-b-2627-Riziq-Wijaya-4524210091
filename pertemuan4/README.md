@@ -19,11 +19,6 @@ Modifikasi 1 (Validasi Predikat Kelulusan Bertingkat): Meningkatkan logika pengk
 Modifikasi 2 (Query Statistik Yang Lebih Rinci): Menambahkan MAX(ipk) dan MIN(ipk) pada statistik agregat SQL untuk menampilkan nilai IPK tertinggi dan terendah selain jumlah total dan rata-rata.
 
 <br>
-Error yang muncul <br>
-PHP Fatal error: Uncaught mysqli_sql_exception: Duplicate entry '2026001' for key 'mahasiswa.nim' in C:\xampp\htdocs\pertemuan1\pertemuan4\contoh1.php on line 11 <br>
-Cara memperbaikinya: Ganti query INSERT INTO pada contoh1.php menjadi INSERT IGNORE 
-
-<br>
 <br>
 
 Sebelum dimodifikasi (Contoh2.php): <br>
@@ -46,7 +41,24 @@ Modifikasi 1 (Update Multi-Kolom): Pengubahan data UPDATE diperluas untuk memper
 Modifikasi 2 (Rekapitulasi Lanjutan & Audit Sisa Data): Menambahkan statistik IPK Tertinggi (MAX(ipk)) dan IPK Terendah (MIN(ipk)) pada query GROUP BY prodi dengan tambahan HAVING.
 
 <br>
+<br>
 
-Error yang muncul <br>
+### 5 Bagian Kode Paling Penting (Pertemuan 4):
+1. **`INSERT IGNORE INTO`**: Menyisipkan record data baru ke tabel tanpa menimbulkan crash jika terjadi bentrokan nilai pada kunci unik (`NIM`). <br>
+2. **`SELECT ... WHERE ... ORDER BY`**: Menyaring data mahasiswa berdasarkan syarat tertentu (`IPK >= 3.50`) dan mengurutkan hasilnya. <br>
+3. **Fungsi Agregasi SQL (`COUNT()`, `AVG()`, `MAX()`, `MIN()`)**: Menghitung ringkasan statistik (jumlah mahasiswa, rata-rata IPK, serta nilai tertinggi & terendah). <br>
+4. **Klausul `GROUP BY` & `HAVING`**: Mengelompokkan baris data berdasarkan nama Program Studi untuk menyajikan rekapitulasi data per prodi. <br>
+5. **Pemeriksaan `mysqli_num_rows()` & `mysqli_fetch_assoc()`**: Memeriksa keberadaan baris data hasil query sebelum menguraikannya ke dalam array asosiatif pada perulangan `while`. <br>
+
+<br>
+<br>
+
+Error yang muncul di Contoh1: <br>
+PHP Fatal error: Uncaught mysqli_sql_exception: Duplicate entry '2026001' for key 'mahasiswa.nim' in C:\xampp\htdocs\pertemuan1\pertemuan4\contoh1.php on line 11 <br>
+Cara memperbaikinya: Ganti query INSERT INTO pada contoh1.php menjadi INSERT IGNORE <br>
+
+<br>
+
+Error yang muncul di Contoh2: <br>
 Jika tabel mahasiswa dijadikan acuan (parent) oleh tabel lain (seperti tabel krs atau nilai_kuliah), MySQL menolak penghapusan baris mahasiswa tersebut demi menjaga integritas data.<br>
 Perbaikan: Tambahkan relasi ON DELETE CASCADE pada definisi Foreign Key tabel anak agar data di tabel anak terhapus otomatis saat data mahasiswa dihapus.
