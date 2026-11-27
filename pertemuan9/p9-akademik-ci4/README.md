@@ -1,69 +1,55 @@
-# CodeIgniter 4 Application Starter
+# Studi Kasus Praktikum PBW Pertemuan 9: Desain Responsif 
 
-## What is CodeIgniter?
+Anggota Kelompok:
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Riziq Wijaya - 4524210091
+Shandika Aldino Gunawan - 452421097
+Fatih Miftahul Rizky - 4524210107
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+Aplikasi sistem akademik sederhana berbasis CodeIgniter 4 yang menerapkan konsep Responsive Web Design menggunakan CSS Media Queries, CSS Grid, dan Flexbox.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Visualisasi Tampilan Responsif
 
-## Installation & updates
+Berikut perbandingan tampilan aplikasi pada tiga resolusi perangkat yang berbeda:
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### 1. Tampilan Desktop (Resolusi &ge; 1000px)
+- **Menu Navigasi**: Berjajar horizontal dengan jarak renggang (`gap: 15px`).
+- **Kartu Statistik / Dashboard**: Memakai CSS Grid 4 kolom sejajar (`grid-template-columns: repeat(4, 1fr)`).
+- **Tombol Aksi**: Berukuran proporsional (`inline-block`).
+- **Tabel Data**: Terbuka penuh menyesuaikan lebar kontainer layar lebar (90% width).
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+![Tampilan Desktop](screenshots/desktop.png)
 
-## Setup
+---
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+### 2. Tampilan Tablet (Resolusi 600px – 999px)
+- **Menu Navigasi**: Tetap berada dalam posisi horizontal.
+- **Kartu Statistik / Dashboard**: Berubah otomatis menjadi 2 kolom (`grid-template-columns: repeat(2, 1fr)`).
+- **Tombol Aksi**: Berubah menjadi selebar layar (`display: block; width: 100%`) agar lebih mudah disentuh (touch-friendly).
+- **Tabel Data**: Terbungkus dalam kontainer `overflow-x: auto` sehingga tetap rapi jika lebar layar terbatas.
 
-## Important Change with index.php
+![Tampilan Tablet](screenshots/tablet.png)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+---
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 3. Tampilan Smartphone / Mobile (Resolusi < 600px)
+- **Menu Navigasi**: Berubah arah menjadi susunan vertikal ke bawah (`flex-direction: column`).
+- **Kartu Statistik / Dashboard**: Berubah menjadi 1 kolom penuh per kartu (`grid-template-columns: 1fr`).
+- **Tombol Aksi**: Memenuhi lebar layar untuk kemudahan klik di layar sentuh kecil.
+- **Tabel Data**: Dilengkapi scroll horizontal (`overflow-x: auto`), mencegah tabel terpotong atau merusak struktur halaman.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+![Tampilan Smartphone](screenshots/smartphone.png)
 
-## Repository Management
+---
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## Rincian Breakpoint CSS
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+File CSS utama berada di `public/css/style.css`:
 
-## Server Requirements
-
-PHP version 8.2 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+| Breakpoint | Elemen yang Berubah | Aturan CSS |
+|---|---|---|
+| `min-width: 1000px` | Kartu Statistik | `grid-template-columns: repeat(4, 1fr);` |
+| `min-width: 600px` | Kartu Statistik | `grid-template-columns: repeat(2, 1fr);` |
+| `max-width: 768px` | Container, Judul, & Tombol | Container 95%, font judul 22px, tombol `width: 100%` |
+| `max-width: 600px` | Menu Navigasi & Statistik | `flex-direction: column;` (tampilan 1 kolom vertikal) |
