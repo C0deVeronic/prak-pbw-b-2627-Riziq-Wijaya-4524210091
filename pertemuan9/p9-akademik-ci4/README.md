@@ -2,9 +2,9 @@
 
 Anggota Kelompok:
 
-Riziq Wijaya - 4524210091
-Shandika Aldino Gunawan - 452421097
-Fatih Miftahul Rizky - 4524210107
+Riziq Wijaya - 4524210091 <br>
+Shandika Aldino Gunawan - 452421097 <br>
+Fatih Miftahul Rizky - 4524210107 <br>
 
 Aplikasi sistem akademik sederhana berbasis CodeIgniter 4 yang menerapkan konsep Responsive Web Design menggunakan CSS Media Queries, CSS Grid, dan Flexbox.
 
